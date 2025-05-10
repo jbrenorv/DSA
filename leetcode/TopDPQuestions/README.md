@@ -42,7 +42,7 @@ Imagine you are on the $i^{th}$ day. Which of the previous stocks would you buy?
 <details>
 <summary>Hint 2</summary>
 
-Yes! We need to check the cheaper stock in the subarray $prices[0..i-1]$. But how can we do that efficiently?
+We need to check the cheaper stock in the subarray $prices[0..i-1]$. But how can we do that efficiently?
 </details>
 
 <details>
@@ -57,6 +57,57 @@ int maxProfit(vector<int>& prices) {
     for (int i = 0; i < (int) prices.size(); i++) {
         answer = max(answer, prices[i] - currentMinPrice);
         currentMinPrice = min(currentMinPrice, prices[i]);
+    }
+    return answer;
+}
+```
+</details>
+
+## [3. House Robber](https://leetcode.com/problems/house-robber/description/)
+
+<details>
+<summary>Hint 1</summary>
+
+Try to reduce the original problem to a smaller one.
+</details>
+
+<details>
+<summary>Hint 2</summary>
+
+Think about recursion.
+</details>
+
+<details>
+<summary>Hint 3</summary>
+
+Imagine that you have the optimal solutions for all prefixes up to $i-1$.
+How can you use that information to find the optimal solution for the prefix $nums[0..i]$?
+</details>
+
+<details>
+<summary>Follow up</summary>
+
+The time and memory complexity of your solution should be $O(n)$ and $O(1)$, respectively.
+</details>
+
+<details>
+<summary>Solution</summary>
+
+Let $previousAnswer$ and $answer$ be the optimal solutions for the prefixes $nums[0..i-2]$ and $nums[0..i-1]$, respectively.
+
+All we need to do is keep this relationship true throughout all iterations of our algorithm.
+
+In the $i^{th}$ iteration, the optimal solution for the prefix $nums[0..i]$ is given by $max(answer,\ nums[i] + previousAnswer)$.
+
+In other words, it's basically a decision: rob the $i^{th}$ house or not.
+
+```cpp
+int rob(vector<int>& nums) {
+    int temp, previousAnswer = 0, answer = nums[0];
+    for (int i = 1; i < (int)nums.size(); i++) {
+        temp = answer;
+        answer = max(answer, nums[i] + previousAnswer);
+        previousAnswer = temp;
     }
     return answer;
 }

@@ -1,6 +1,6 @@
 /**
  * Question: https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
- * Language: Cpp
+ * Language: C++
  */
 
 #include <bits/stdc++.h>

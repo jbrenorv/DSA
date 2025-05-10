@@ -1,7 +1,10 @@
 /**
  * Question: https://leetcode.com/problems/climbing-stairs/
- * Language: Cpp
+ * Language: C++
  */
+
+#include <bits/stdc++.h>
+using namespace std;
 
 
 int climbStairs(int n) {
